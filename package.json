@@ -1,19 +1,19 @@
 {
-  "name": "vitesse",
+  "name": "s-message-box",
   "version": "0.0.1",
   "packageManager": "pnpm@6.32.3",
-  "description": "vitesse",
+  "description": "s-message-box",
   "author": "Simon He",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git + git@github.com:Simon-He95/vitesse.git"
+    "url": "git + git@github.com:Simon-He95/s-message-box.git"
   },
   "bugs": {
-    "url": "https://github.com/Simon-He95/vitesse/issues"
+    "url": "https://github.com/Simon-He95/s-message-box/issues"
   },
   "keywords": [
-    "vitesse",
+    "s-message-box",
     "vue"
   ],
   "exports": {
