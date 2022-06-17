@@ -1,6 +1,6 @@
 {
   "name": "s-message-box",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "packageManager": "pnpm@6.32.3",
   "description": "s-message-box own many properties meet your needs",
   "author": "Simon He",
