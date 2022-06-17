@@ -1,2 +1,2 @@
 export * from './types'
-export { sMessageBox } from './component'
+export { sMessageBox } from './sMessageBox'

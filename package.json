@@ -5,6 +5,7 @@
   "description": "s-message-box own many properties meet your needs",
   "author": "Simon He",
   "license": "MIT",
+  "homepage": "http://s-message-box.hejian.club/",
   "repository": {
     "type": "git",
     "url": "git + git@github.com:Simon-He95/s-message-box.git"
@@ -14,7 +15,8 @@
   },
   "keywords": [
     "s-message-box",
-    "vue"
+    "vue",
+    "sMessageBox"
   ],
   "exports": {
     ".": {
