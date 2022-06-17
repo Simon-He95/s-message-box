@@ -1,56 +1,56 @@
 <script setup lang="ts">
-const show = ref(false)
+const show = ref(false);
 function change() {
-  show.value = !show.value
+  show.value = !show.value;
 }
 function cancel() {
-  change()
+  change();
 }
 function confirm() {
-  alert('confirm')
-  change()
+  alert("confirm");
+  change();
 }
 
 const titleForm = reactive({
-  title: 'Title',
+  title: "Title",
   width: 300,
   height: 150,
   borderRadius: 10,
   shadow: true,
-  titleColor: '',
+  titleColor: "",
   borderBottom: true,
   titleFontSize: 18,
   titleLineHeight: 40,
-  messageColor: '',
+  messageColor: "",
   messageFontSize: 14,
-  message: '我是内容',
-  cancelText: '取消',
-  confirmText: '确认',
+  message: "我是内容",
+  cancelText: "取消",
+  confirmText: "确认",
   confirmFontSize: 14,
   cancelFontSize: 14,
-  cancelColor: '',
-  confirmColor: '',
+  cancelColor: "",
+  confirmColor: "",
   confirmBorderRadius: 0,
   cancelBorderRadius: 0,
-  buttonLineHeight: 40,
-  buttonWidth: 100,
-  confirmBackgroundColor: '#409eff',
-  cancelBackgroundColor: '#ffffff',
-  cancelBorderColor: '#e4e7ed',
-  confirmBorderColor: '#dcdfe6',
+  buttonLineHeight: 32,
+  buttonWidth: 75,
+  confirmBackgroundColor: "#409eff",
+  cancelBackgroundColor: "#ffffff",
+  cancelBorderColor: "#e4e7ed",
+  confirmBorderColor: "#dcdfe6",
   buttonRadius: 10,
-  buttonPosition: 'center',
+  buttonPosition: "center",
   messageCenter: false,
   titleCenter: false,
   rules: {
-    title: [val => !!val || 'required'],
-    message: [val => !!val || 'required'],
+    title: [(val) => !!val || "required"],
+    message: [(val) => !!val || "required"],
   },
-})
+});
 
 function exportCode() {
   function replacer(key, value) {
-    return typeof value === 'function' ? value.toString() : value
+    return typeof value === "function" ? value.toString() : value;
   }
   const content = `
    /* script */
@@ -76,14 +76,14 @@ function exportCode() {
         :cancel="cancel"
         :confirm="confirm"
       />
-  `
-  const dom = document.createElement('input')
-  dom.value = content
-  document.body.appendChild(dom)
-  dom.select()
-  document.execCommand('copy')
-  document.body.removeChild(dom)
-  alert('复制成功')
+  `;
+  const dom = document.createElement("input");
+  dom.value = content;
+  document.body.appendChild(dom);
+  dom.select();
+  document.execCommand("copy");
+  document.body.removeChild(dom);
+  alert("复制成功");
 }
 </script>
 
@@ -91,12 +91,8 @@ function exportCode() {
   <main font-sans p="x-4 y-10" text="center gray-700 dark:gray-200">
     <vivid-typing text-3xl font-bold content="Design a messageBox of your own" />
     <div flex="~ gap-5" justify-center m-y-10>
-      <button btn @click="change()">
-        show sMessageBox
-      </button>
-      <button btn @click="exportCode()">
-        export code
-      </button>
+      <button btn @click="change()">show sMessageBox</button>
+      <button btn @click="exportCode()">export code</button>
     </div>
     <div whitespace-nowrap m-y-10>
       <VerifyForm :form-data="titleForm">
@@ -111,12 +107,8 @@ function exportCode() {
         </VerifyFormField>
         <VerifyFormField prop="borderBottom" label="是否开启遮罩">
           <el-radio-group v-model="titleForm.shadow" class="ml-4">
-            <el-radio :label="true" size="large">
-              是
-            </el-radio>
-            <el-radio :label="false" size="large">
-              否
-            </el-radio>
+            <el-radio :label="true" size="large"> 是 </el-radio>
+            <el-radio :label="false" size="large"> 否 </el-radio>
           </el-radio-group>
         </VerifyFormField>
         <VerifyFormField prop="titleColor" label="标题颜色">
@@ -133,22 +125,14 @@ function exportCode() {
         </VerifyFormField>
         <VerifyFormField props="titleCenter" label="标题是否居中">
           <el-radio-group v-model="titleForm.titleCenter" class="ml-4">
-            <el-radio :label="true" size="large">
-              是
-            </el-radio>
-            <el-radio :label="false" size="large">
-              否
-            </el-radio>
+            <el-radio :label="true" size="large"> 是 </el-radio>
+            <el-radio :label="false" size="large"> 否 </el-radio>
           </el-radio-group>
         </VerifyFormField>
         <VerifyFormField prop="borderBottom" label="标题底线">
           <el-radio-group v-model="titleForm.borderBottom" class="ml-4">
-            <el-radio :label="true" size="large">
-              是
-            </el-radio>
-            <el-radio :label="false" size="large">
-              否
-            </el-radio>
+            <el-radio :label="true" size="large"> 是 </el-radio>
+            <el-radio :label="false" size="large"> 否 </el-radio>
           </el-radio-group>
         </VerifyFormField>
         <VerifyFormField props="messageColor" label="内容颜色">
@@ -156,12 +140,8 @@ function exportCode() {
         </VerifyFormField>
         <VerifyFormField props="messageCenter" label="内容是否居中">
           <el-radio-group v-model="titleForm.messageCenter" class="ml-4">
-            <el-radio :label="true" size="large">
-              是
-            </el-radio>
-            <el-radio :label="false" size="large">
-              否
-            </el-radio>
+            <el-radio :label="true" size="large"> 是 </el-radio>
+            <el-radio :label="false" size="large"> 否 </el-radio>
           </el-radio-group>
         </VerifyFormField>
         <VerifyFormField props="message" label="内容文字" required>
@@ -205,15 +185,9 @@ function exportCode() {
         </VerifyFormField>
         <VerifyFormField props="buttonPosition" label="按钮位置">
           <el-radio-group v-model="titleForm.buttonPosition" class="ml-4">
-            <el-radio label="center" size="large">
-              中
-            </el-radio>
-            <el-radio label="left" size="large">
-              左
-            </el-radio>
-            <el-radio label="right" size="large">
-              否
-            </el-radio>
+            <el-radio label="center" size="large"> 中 </el-radio>
+            <el-radio label="left" size="large"> 左 </el-radio>
+            <el-radio label="right" size="large"> 否 </el-radio>
           </el-radio-group>
         </VerifyFormField>
       </VerifyForm>
