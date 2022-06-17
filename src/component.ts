@@ -22,16 +22,15 @@ function addStyle() {
     padding-bottom:10px;
   }
   .s-messageBox-title{
+    position:relative;
     padding:0 15px;
     display:flex;
     align-items: center;
-    justify-content: space-between;
   }
   .s-messageBox-message{
     height: 100%;
     display: flex;
-    align-items: center;
-    justify-content: center;
+    padding:10px 15px;
   }
   .s-messageBox-close:hover{
     cursor: pointer;
@@ -52,7 +51,7 @@ export const sMessageBox = defineComponent({
     },
     title: {
       type: String,
-      default: 'Alert',
+      default: 'Title',
     },
     borderColor: {
       type: String,
@@ -114,7 +113,7 @@ export const sMessageBox = defineComponent({
       type: String,
       default: '#fff',
     },
-    cancelBackground: {
+    cancelBackgroundColor: {
       type: String,
       default: '#ebeef5',
     },
@@ -122,11 +121,15 @@ export const sMessageBox = defineComponent({
       type: Number,
       default: 16,
     },
-    cancelLineHeight: {
+    buttonLineHeight: {
       type: Number,
       default: 40,
     },
-    cancelBorderRadius: {
+    buttonWidth: {
+      type: Number,
+      default: 40,
+    },
+    buttonRadius: {
       type: Number,
       default: 10,
     },
@@ -142,7 +145,7 @@ export const sMessageBox = defineComponent({
       type: String,
       default: '#fff',
     },
-    confirmBackground: {
+    confirmBackgroundColor: {
       type: String,
       default: '#ebeef5',
     },
@@ -150,21 +153,25 @@ export const sMessageBox = defineComponent({
       type: Number,
       default: 16,
     },
-    confirmLineHeight: {
-      type: Number,
-      default: 40,
-    },
-    confirmBorderRadius: {
-      type: Number,
-      default: 10,
-    },
     confirmBorderColor: {
       type: String,
       default: '#ebeef5',
     },
+    buttonPosition: {
+      type: String,
+      default: 'center',
+    },
     confirm: {
       type: Function,
       default: () => { },
+    },
+    titleCenter: {
+      type: Boolean,
+      default: false,
+    },
+    messageCenter: {
+      type: Boolean,
+      default: false,
     },
     cancel: {
       type: Function,
@@ -207,19 +214,21 @@ export const sMessageBox = defineComponent({
             : '',
         },
 
-      }, [h('span', { style: { color: props.titleColor } }, props.title), h('span', { class: 'i-carbon:close s-messageBox-close', onClick: (e: Event) => props.close(e) })]),
+      }, [h('div', { style: { color: props.titleColor, textAlign: props.titleCenter ? 'center' : 'left', width: '100%' } }, props.title), h('span', { class: 'i-carbon:close s-messageBox-close', style: { position: 'absolute', right: '15px' }, onClick: (e: Event) => props.close(e) })]),
       h('div', {
         class: 's-messageBox-message',
         style: {
           color: props.messageColor,
-          fontSize: props.messageFontSize,
+          fontSize: `${props.messageFontSize}px`,
+          justifyContent: props.messageCenter ? 'center' : 'flex-start',
+          alignItems: props.messageCenter ? 'center' : 'flex-start',
         },
       }, props.message),
       h('div', {
         class: 's-messageBox-button',
         style: {
           display: 'flex',
-          justifyContent: 'center',
+          justifyContent: props.buttonPosition === 'center' ? 'center' : props.buttonPosition === 'left' ? 'flex-start' : 'flex-end',
           padding: '0 15px',
         },
       }, [
@@ -227,12 +236,13 @@ export const sMessageBox = defineComponent({
           class: 's-messageBox-cancel',
           style: {
             color: props.cancelColor,
-            background: props.cancelBackground,
+            background: props.cancelBackgroundColor,
             fontSize: `${props.cancelFontSize}px`,
-            lineHeight: `${props.cancelLineHeight}px`,
-            borderRadius: `${props.cancelBorderRadius}px`,
+            lineHeight: `${props.buttonLineHeight}px`,
+            borderRadius: `${props.buttonRadius}px`,
             border: `1px solid ${props.cancelBorderColor}`,
-            padding: '0 15px',
+            width: `${props.buttonWidth}px`,
+            textAlign: 'center',
             marginRight: '10px',
             cursor: 'pointer',
           },
@@ -242,12 +252,13 @@ export const sMessageBox = defineComponent({
           class: 's-messageBox-confirm',
           style: {
             color: props.confirmColor,
-            background: props.confirmBackground,
+            background: props.confirmBackgroundColor,
             fontSize: `${props.confirmFontSize}px`,
-            lineHeight: `${props.confirmLineHeight}px`,
-            borderRadius: `${props.confirmBorderRadius}px`,
+            lineHeight: `${props.buttonLineHeight}px`,
+            borderRadius: `${props.buttonRadius}px`,
             border: `1px solid ${props.confirmBorderColor}`,
-            padding: '0 15px',
+            width: `${props.buttonWidth}px`,
+            textAlign: 'center',
             cursor: 'pointer',
           },
           onClick: (e: Event) => props.confirm(e),
